@@ -1,0 +1,16 @@
+import { test } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('https://www.orangehrm.com/');
+  await page.getByRole('button', { name: 'Book a Free Demo' }).click();
+  await page.getByPlaceholder('Your Full Name*').click();
+  await page.getByPlaceholder('Your Full Name*').fill('sunil');
+  await page.getByPlaceholder('Business Email*').click();
+  await page.getByPlaceholder('Business Email*').fill('xyz@gmail.com');
+  await page.getByPlaceholder('Company Name').click();
+  await page.getByPlaceholder('Company Name').fill('cavssss');
+  await page.getByLabel('Country').selectOption('India');
+  await page.getByPlaceholder('Phone Number*').click();
+  await page.getByPlaceholder('Phone Number*').fill('7978487756');
+  await page.getByRole('button', { name: 'Get a Free Demo' }).click();
+});

@@ -1,0 +1,16 @@
+
+class Parent{
+	void test() {
+		System.out.print("Parent");
+	}
+}
+
+class Child extends Parent{
+	void test() {
+		System.out.print("Child");
+	}
+	public static void main (String [] args) {
+		Parent p=new Child();
+		p.test();
+	}
+}

@@ -1,0 +1,30 @@
+
+public class CorejavaBrushup2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		//String is an object
+		
+		//String s = "Sunil is a good boy";  //String literal
+		String s1 = "Sunil is a good boy";
+		
+		String s2 = new String ("Welcome");//New memory allocate
+		String s3 = new String ("Welcome");
+		
+		String s = "Sunil is a good boy";
+		String[] SplittedString = s.split("a");
+		System.out.println(SplittedString[0]);
+		System.out.println(SplittedString[1]);
+		//System.out.println(SplittedString[2]);
+		//System.out.println(SplittedString[3]);
+		System.out.println(SplittedString[1].trim());
+		
+		for (int i=0; i<s.length(); i++)
+		{
+			System.out.println(s.charAt(i));
+		}
+		
+	}
+
+}

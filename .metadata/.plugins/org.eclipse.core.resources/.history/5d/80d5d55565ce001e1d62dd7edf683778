@@ -1,0 +1,27 @@
+import { test } from '@playwright/test';
+
+test('Free Demo Book', async ({ page }) => {
+  await page.goto('https://www.orangehrm.com/');
+  await page.getByRole('button', { name: 'Book a Free Demo' }).click();
+  await page.click('input[placeholder="Your Full Name*"]');
+  await page.fill('input[placeholder="Your Full Name*"]', 'Sunil');
+  await page.click('input[placeholder="Business Email*"]');
+  await page.fill('input[placeholder="Business Email*"]', 'Sunilkumarroul.skl@gmail.com');
+  await page.click('input[placeholder="Company Name"]');
+  await page.fill('input[placeholder="Company Name"]', 'Cavsys');
+    // Wait for the Country dropdown to be visible and enabled before selecting the option
+  await page.waitForSelector('select[name="Form_getForm_Country"]', { state: 'visible' });
+  
+  // Select the 'India' option in the Country dropdown
+  await page.selectOption('select[name="Form_getForm_Country"]', 'India');
+
+  await page.fill('input[placeholder="Phone Number*"]', '7978487756');
+
+  // Switch to the iframe and interact with the captcha
+  const frame = page.frame({ name: 'a-s5g815dhmvjw' });
+  const checkbox = await frame.$('input[type="checkbox"]');
+  await checkbox.check();
+
+  // Submit the form
+  await page.click('button:has-text("Get a Free Demo")');
+});

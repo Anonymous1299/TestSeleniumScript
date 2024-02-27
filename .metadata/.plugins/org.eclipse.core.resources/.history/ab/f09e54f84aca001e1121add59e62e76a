@@ -1,0 +1,29 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
+
+public class SeleniumDay1 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.Chrome.driver", "C:\\\\Users\\\\Sunil.Roul\\\\chromedriver_win32.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.myntra.com/");
+		driver.findElement(By.xpath("//span[@class='myntraweb-sprite desktop-iconUser sprites-headerUser']"));
+		Thread.sleep(1000);
+		WebElement hoverElement = driver.findElement(By.xpath("//span[normalize-space()='Profile']"));
+		Thread.sleep(1000);
+		Actions actions = new Actions(driver);
+		Thread.sleep(1000);
+		actions.moveToElement(hoverElement).perform();
+		Thread.sleep(1000);
+		WebElement wait = driver.findElement(By.xpath("//a[normalize-space()='login / Signup']"));
+		actions.moveToElement(wait).click();
+
+//		driver.close();
+	}
+
+}

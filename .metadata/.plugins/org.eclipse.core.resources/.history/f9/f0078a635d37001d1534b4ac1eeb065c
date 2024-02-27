@@ -1,0 +1,28 @@
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class SELENIM_FLIPKART_AUTO {
+
+	public static void main(String[] args) 
+	{
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.Chrome.driver", "C:\\\\Users\\\\Sunil.Roul\\\\chromedriver_win32.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		driver.get("https://www.flipkart.com/");
+		driver.findElement(By.cssSelector("input[class='_2IX_2- VJZDxU']")).sendKeys("9937806564");
+		driver.findElement(By.cssSelector("input[type='password']")).sendKeys("Sunil@123");
+		driver.findElement(By.cssSelector("button[type='submit'] span")).click();
+		WebElement ele = driver.findElement(By.xpath("//div[contains(text(),'Sunil Kumar')]"));
+		Actions action = new Actions(driver);
+		action.moveToElement(ele).perform();
+		//driver.close();
+
+	}
+
+}

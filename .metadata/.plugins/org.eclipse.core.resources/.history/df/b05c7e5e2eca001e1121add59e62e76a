@@ -1,0 +1,28 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class SeleniumDay1 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.Chrome.driver", "C:\\\\Users\\\\Sunil.Roul\\\\chromedriver_win32.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://jpetstore.aspectran.com/catalog/");
+		driver.findElement(By.xpath("//a[normalize-space()='Sign Up']")).click();
+		driver.findElement(By.xpath("//input[@name='username']")).sendKeys("User1");
+		driver.findElement(By.xpath("//input[@name='password']")).sendKeys("Use@123");
+		driver.findElement(By.xpath("//input[@name='repeatedPassword']")).sendKeys("Use@123");
+		driver.findElement(By.xpath("//input[@name='firstName']")).sendKeys("Jpet");
+		driver.findElement(By.xpath("//input[@name='lastName']")).sendKeys("Store");
+		driver.findElement(By.xpath("//input[@name='email']")).sendKeys("xyzqbc@gmail.com");
+		driver.findElement(By.xpath("//input[@name='phone']")).sendKeys("7948765490");
+		driver.findElement(By.xpath("//input[@name='address1']")).sendKeys("Cavisson Systems");
+		driver.findElement(By.xpath("//input[@name='address2']")).sendKeys("Sector 63");
+		driver.findElement(By.xpath("//input[@name='city']")).sendKeys("Noida");
+		driver.findElement(By.xpath("//input[@name='state']")).sendKeys("UP");
+		driver.findElement(By.xpath("//input[@name='zip']")).sendKeys("201301");
+		driver.close();
+	}
+
+}

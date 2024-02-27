@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="MySuite">
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+    </listeners>
+
+    <test name="MyTest">
+        <classes>
+            <!-- Reference your test class without a package -->
+            <class name="OrangeTestNGClass"/>
+        </classes>
+    </test>
+</suite>

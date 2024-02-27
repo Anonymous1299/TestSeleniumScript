@@ -1,0 +1,2 @@
+module Lumada_Script {
+}

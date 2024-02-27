@@ -1,0 +1,76 @@
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
+
+public class SELENIM_FLIPKART_AUTO {
+
+	public static void main(String[] args) throws InterruptedException
+	{
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.Chrome.driver", "C:\\Users\\Sunil.Roul\\Downloads\\chromedriver_win32 (4)\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		driver.get("https://www.flipkart.com/");
+		Thread.sleep(2000);
+		driver.manage().window().maximize();
+		driver.findElement(By.xpath("//span[normalize-space()='Login']")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.cssSelector("input[class='_2IX_2- VJZDxU']")).sendKeys("9937806564");
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//button[normalize-space()='Request OTP']"));
+		Thread.sleep(2000);
+		driver.findElement(By.cssSelector("input[type='password']")).sendKeys("Sunil@123");
+	////Wrong Password///////
+//		driver.findElement(By.cssSelector("input[type='password']")).sendKeys("Sunil@13");
+//		Thread.sleep(2000);
+//		driver.findElement(By.cssSelector("button[type='submit'] span")).click();
+//		Thread.sleep(2000);
+//		System.out.println(driver.findElement(By.cssSelector("span[class='_2YULOR'] span")).getText());
+//		Thread.sleep(2000);
+//		Assert.assertEquals(driver.findElement(By.cssSelector("span[class='_2YULOR'] span")).getText(), "Your username password is incorrect");
+		//driver.close();
+		/*Thread.sleep(2000);
+		WebElement ele = driver.findElement(By.xpath("//div[contains(text(),'Sunil Kumar')]"));
+		Thread.sleep(5000);
+		Actions action = new Actions(driver);
+		Thread.sleep(2000);
+		action.moveToElement(ele).perform();
+		WebElement My = driver.findElement(By.cssSelector("body > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > ul:nth-child(1) > li:nth-child(1) > a:nth-child(1) > div:nth-child(2)"));
+		Thread.sleep(2000);
+		action.moveToElement(My).click().perform();
+		//driver.close();*/
+//		driver.findElement(By.xpath("//div[contains(text(),'Mobiles')]")).click();
+//		Thread.sleep(2000);
+//		WebElement ele1 = driver.findElement(By.cssSelector("div[class='_331-kn'] span:nth-child(1)"));
+//		Thread.sleep(2000);
+//		Actions ac1 = new Actions(driver);
+//		Thread.sleep(2000);
+//		ac1.moveToElement(ele1).perform();
+//		Thread.sleep(2000);
+//		WebElement ele2 = driver.findElement(By.xpath("//a[@title='iPhone SE']"));
+//		Thread.sleep(2000);
+//		Actions ac2 = new Actions(driver);
+//		Thread.sleep(2000);
+//		ac1.moveToElement(ele2).click().perform();
+//		Thread.sleep(2000);
+//		driver.findElement(By.xpath("//div[normalize-space()='APPLE iPhone SE (Black, 128 GB)']")).click();
+//		Thread.sleep(2000);
+//		driver.switchTo().frame(driver.findElement(By.xpath("//span[@class='B_NuCI']")));
+//		//driver.get("https://www.flipkart.com/apple-iphone-se-black-128-gb/p/itma9285ccc6af28?pid=MOBFWQ6BHUEVZPXD&lid=LSTMOBFWQ6BHUEVZPXDXBUVMH&marketplace=FLIPKART&store=tyy%2F4io&srno=b_1_1&otracker=nmenu_sub_Electronics_0_iPhone%20SE&fm=organic&iid=1ec0c2b3-4c4b-4af4-9c9d-9ae893f41027.MOBFWQ6BHUEVZPXD.SEARCH&ppt=clp&ppn=mobile-phones-store&ssid=t71fb7mqlc0000001663584692080");
+//		//Thread.sleep(2000);
+//		//System.out.println(driver.findElement(By.xpath("//span[@class='B_NuCI']")).getLocation());
+//     	JavascriptExecutor j = (JavascriptExecutor) driver;
+//		Thread.sleep(2000);
+//		j.executeScript("window.scrollBy(0,5000)");
+		
+		
+        
+	}
+
+}

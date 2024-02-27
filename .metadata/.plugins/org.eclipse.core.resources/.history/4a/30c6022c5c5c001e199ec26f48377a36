@@ -1,0 +1,80 @@
+package org.openqa.selenium.chrome;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class GL_RPTS1 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.Chrome.driver", "C:\\\\Users\\\\Sunil.Roul\\\\chromedriver_win32.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		driver.get("https://de-m5perfga.dev.lumada.solutions.hitachienergy.com/landing");
+		Thread.sleep(2000);
+		driver.manage().window().maximize();
+		driver.findElement(By.xpath("//span[@class='kc-social-provider-name']")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//input[@id='i0116']")).sendKeys("automation_test@dfplay.onmicrosoft.com");
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//input[@id='idSIButton9']")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//input[@name='passwd']")).sendKeys("Autouser!2345");
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//input[@type='submit']")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("(//input[@type='submit'])[1]")).click();
+		Thread.sleep(15000);
+		driver.findElement(By.xpath("(//*[name()='svg'][@class='MuiSvgIcon-root'])[1]")).click();
+		Thread.sleep(5000);
+		driver.findElement(By.xpath("//span[normalize-space()='Reliability Manager']")).click();
+		Thread.sleep(5000);
+		driver.findElement(By.xpath("//span[normalize-space()='Asset Browser']")).click();
+		Thread.sleep(9000);
+		driver.findElement(By.xpath("//input[@id='search']")).sendKeys("SWGR1K-A0000000001");
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("(//*[name()='svg'][@class='MuiSvgIcon-root'])[5]")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//span[normalize-space()='1 - 25']")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//li[@value='200']")).click();
+		Thread.sleep(5000);
+		driver.findElement(By.xpath("//span[normalize-space()='1 - 200']")).click();
+		Thread.sleep(4000);
+		driver.findElement(By.xpath("//li[@value='25']")).click();
+		Thread.sleep(3000);
+		driver.findElement(By.xpath("//span[normalize-space()='Asset ID']")).click();
+		Thread.sleep(5000);
+		driver.findElement(By.xpath("//button[normalize-space()='2']")).click();
+		Thread.sleep(4000);
+		driver.findElement(By.xpath("//input[@id='formula-search']")).sendKeys("SWGR1K-A0000000516");
+		Thread.sleep(4000);
+		driver.findElement(By.xpath("(//*[name()='svg'][@class='MuiSvgIcon-root'])[9]")).click();
+		Thread.sleep(4000);
+		driver.findElement(By.xpath("(//button[@class='MuiButtonBase-root MuiButton-root MuiButton-outlined wcux-nxt-button wcux-nxt-button-discrete wcux-nxt-button-normal sc-eCstlR bDQLJy'])[1]")).click();
+		Thread.sleep(5000);
+		driver.findElement(By.xpath("(//*[name()='polygon'])[1]")).click();
+		Thread.sleep(4000);
+		driver.findElement(By.xpath("//div[@title='Add Filter']")).click();
+		Thread.sleep(4000);
+		driver.findElement(By.xpath("(//li[@value='scenarioId'])[1]")).click();
+		Thread.sleep(4000);
+		driver.findElement(By.xpath("(//input[@placeholder='Input Text'])[1]")).sendKeys("18574");
+		Thread.sleep(4000);
+		driver.findElement(By.xpath("//div[@title='Apply']")).click();
+		Thread.sleep(4000);
+		driver.findElement(By.xpath("//button[@class='MuiButtonBase-root MuiButton-root MuiButton-text wcux-nxt-button wcux-nxt-button-secondary-ultra-discrete wcux-nxt-button-normal sc-eCstlR bDQLJy']//div[@class='wcux-nxt-button-icon -justify-left']//*[name()='svg']")).click();
+		Thread.sleep(4000);
+		driver.findElement(By.xpath("(//*[name()='svg'][@class='MuiSvgIcon-root light-opacity'])[2]")).click();
+		Thread.sleep(4000);
+		driver.findElement(By.xpath("(//input[@value='normalCheckboxValue'])[2]")).click();
+		Thread.sleep(4000);
+		driver.findElement(By.xpath("(//input[@value='normalCheckboxValue'])[3]")).click();
+		Thread.sleep(4000);
+		driver.findElement(By.xpath("(//input[@value='normalCheckboxValue'])[4]")).click();
+		//driver.close();
+	}
+
+}

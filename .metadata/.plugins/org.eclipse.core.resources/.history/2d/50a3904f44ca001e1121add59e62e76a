@@ -1,0 +1,36 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class SeleniumDay1 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.Chrome.driver", "C:\\\\Users\\\\Sunil.Roul\\\\chromedriver_win32.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.myntra.com/");
+		driver.findElement(By.xpath("//span[@class='myntraweb-sprite desktop-iconUser sprites-headerUser']"));
+		WebElement hoverElement = driver.findElement(By.id("//span[normalize-space()='Profile']"));
+		
+		//Dropdown Selection
+		Select dropdown = new Select(driver.findElement(By.xpath("//select[@name='languagePreference']")));
+		dropdown.selectByIndex(0);
+		Select dropdown2 = new Select(driver.findElement(By.xpath("//select[@name='favouriteCategoryId']")));
+		dropdown2.selectByIndex(1);
+		//Radio Button
+		int a = driver.findElements(By.xpath("//input[@name='listOption']")).size();
+//		System.out.println(a);
+		driver.findElements(By.xpath("//input[@name='listOption']")).get(0).click();
+		driver.findElement(By.xpath("//button[normalize-space()='Save Account Information']")).click();
+		
+		//Login
+		driver.findElement(By.xpath("//a[normalize-space()='Sign In']")).click();
+		driver.findElement(By.xpath("//input[@name='username']")).sendKeys("User1");
+		driver.findElement(By.xpath("//input[@name='password']")).sendKeys("User@123");
+		driver.findElement(By.xpath("//button[normalize-space()='Login']"));
+//		driver.close();
+	}
+
+}

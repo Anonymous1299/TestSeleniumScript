@@ -1,0 +1,32 @@
+import { test } from '@playwright/test';
+
+test('Free Demo Book', async ({ page }) => {
+  try {
+    await page.goto('https://www.orangehrm.com/');
+
+    // Wait for the button to be visible
+    await page.waitForSelector('button:has-text("Book a Free Demo")', { state: 'visible' });
+
+    // Click the button
+    await page.click('button:has-text("Book a Free Demo")', { timeout: 5000 });
+
+    // Your existing code...
+    await page.click('input[placeholder="Your Full Name*"]');
+    await page.fill('input[placeholder="Your Full Name*"]', 'Sunil');
+    await page.click('input[placeholder="Business Email*"]');
+    await page.fill('input[placeholder="Business Email*"]', 'Sunilkumarroul.skl@gmail.com');
+    await page.click('input[placeholder="Company Name"]');
+    await page.fill('input[placeholder="Company Name"]', 'Cavsys');
+    await page.selectOption('label:has-text("Country")', 'India');
+    await page.click('input[placeholder="Phone Number*"]');
+    await page.fill('input[placeholder="Phone Number*"]', '7978487756');
+    await page.click('iframe[name="a-s5g815dhmvjw"] >> label:has-text("I\'m not a robot")');
+    await page.click('button:has-text("Get a Free Demo")');
+
+    // Additional actions if needed...
+
+  } catch (error) {
+    console.error('Error during test:', error);
+    throw error; // Rethrow the error to mark the test as failed
+  }
+});

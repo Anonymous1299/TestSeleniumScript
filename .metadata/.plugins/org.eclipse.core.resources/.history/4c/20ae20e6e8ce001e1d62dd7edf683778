@@ -1,0 +1,68 @@
+package Playwrightsessions;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.microsoft.playwright.Browser;
+import com.microsoft.playwright.BrowserContext;
+import com.microsoft.playwright.BrowserType;
+import com.microsoft.playwright.Page;
+import com.microsoft.playwright.Playwright;
+import com.microsoft.playwright.options.AriaRole;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+public class PlaywrightMainClass {
+    private static ExtentReports extent = exmanagerclass.createInstance("test-output/ExtentReport.html");
+    private static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
+
+    public void performPlaywrightActions() throws InterruptedException {
+        try (Playwright playwright = Playwright.create()) {
+            Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions()
+                    .setHeadless(false));
+            BrowserContext context = browser.newContext();
+            Page page = context.newPage();
+            try {
+                ExtentTest extentTest = extent.createTest("performPlaywrightActions");
+                test.set(extentTest);
+
+                page.navigate("https://www.orangehrm.com/");
+                page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Book a Free Demo")).click();
+                page.getByPlaceholder("Your Full Name*").click();
+                page.getByPlaceholder("Your Full Name*").fill("sunil");
+                page.getByPlaceholder("Business Email*").click();
+                page.getByPlaceholder("Business Email*").fill("sunil@gmail.com");
+                page.getByPlaceholder("Company Name").click();
+                page.getByPlaceholder("Company Name").fill("cavs");
+                page.getByLabel("Country").selectOption("India");
+                page.getByPlaceholder("Phone Number*").click();
+                page.getByPlaceholder("Phone Number*").fill("7978487756");
+                page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Get a Free Demo")).click();
+
+                // Capture screenshot
+                byte[] screenshot = page.screenshot();
+                String screenshotPath = "screenshots/" + System.currentTimeMillis() + ".png";
+
+                // Save screenshot to file
+                Path screenshotFilePath = Paths.get(screenshotPath);
+                Files.createDirectories(screenshotFilePath.getParent());
+                Files.write(screenshotFilePath, screenshot);
+
+                // Attach screenshot to the ExtentReport
+                test.get().addScreenCaptureFromPath(screenshotPath);
+
+                // Log test status
+                test.get().log(Status.PASS, "Test passed successfully");
+            } catch (Exception e) {
+                // Log test failure
+                test.get().log(Status.FAIL, "Test failed with exception: " + e.getMessage());
+            }
+        }
+    }
+
+    public static void flushReport() {
+        extent.flush();
+    }
+}

@@ -1,0 +1,19 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class SELENIM_FLIPKART_AUTO {
+
+	public static void main(String[] args) 
+	{
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.Chrome.driver", "C:\\\\Users\\\\Sunil.Roul\\\\chromedriver_win32.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.flipkart.com/");
+		driver.findElement(By.cssSelector("input[class='_2IX_2- VJZDxU']")).sendKeys("9937806564");
+		driver.findElement(By.cssSelector("input[type='password']")).sendKeys("Sunil@123");
+		driver.close();
+
+	}
+
+}

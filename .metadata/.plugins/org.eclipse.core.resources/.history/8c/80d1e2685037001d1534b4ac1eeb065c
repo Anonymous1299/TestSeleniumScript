@@ -1,0 +1,46 @@
+import java.time.Duration;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
+
+public class Myntra {
+
+	public static void main(String[] args) throws InterruptedException
+	{
+		// TODO Auto-generated method stub
+		WebDriver driver = new ChromeDriver();
+		//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        System.setProperty("WebDriver.Chrome.driver", "C:\\Users\\Sunil.Roul\\chromedriver_win32.exe");
+        
+//        Thread.sleep(2000);
+//        driver.findElement(By.cssSelector("div[class='go_DOp _2errNR'] div[class='_1psGvi _3BvnxG'] div")).click();
+//        Thread.sleep(2000);
+        driver.findElement(By.cssSelector("input[class='_2IX_2- VJZDxU']")).sendKeys("9937806564");
+        driver.findElement(By.cssSelector("input[type='password']")).sendKeys("Sunil@123");
+        //driver.findElement(By.cssSelector("input[type='password']")).sendKeys("Sonu@123");
+        driver.findElement(By.cssSelector("button[class='_2KpZ6l _2HKlqd _3AWRsL']")).click();
+       // System.out.println(driver.findElement(By.cssSelector("span[class='_2YULOR'] span")).getText());
+        driver.findElement(By.cssSelector("a[class='_2QKxJ- _2_DUc_'] span")).click();
+       // Thread.sleep(5000);
+        WebElement dropdown = driver.findElement(By.xpath("(//div[@class='_28p97w'])[1]"));
+       // Thread.sleep(3000);
+       // dropdown.click();
+      /*  WebElement dropdown1 = driver.findElement(By.xpath("(//div[@class='_28p97w'])[1]"));*/
+        Actions action = new Actions(driver);
+        action.moveToElement(dropdown).perform();
+        //Select dropdown1 = new Select(driver.findElement(By.id("//div[@class='_28p97w'])[1]"))); 
+      //  dropdown1.selectByVisibleText("My Profile");
+       // dropdown1.click();
+       // driver.findElement(By.cssSelector("div[class='_1kfTjk'] div:nth-child(3) div:nth-child(1) div:nth-child(1) div:nth-child(1) div:nth-child(1)")).click();
+    	
+      //  Select dropdown = new Select(driver.findElement(By.xpath("(//div[@class='_28p97w'])[1]")));
+       // driver.findElement(By.xpath("(//div[@class='_28p97w'])[1]")).click();
+        
+
+	}
+
+}

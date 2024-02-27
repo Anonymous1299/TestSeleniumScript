@@ -1,0 +1,144 @@
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+import java.time.Duration;
+
+public class OrangeTestNGClass {
+
+    private WebDriver driver;
+    private ExtentReports extent;
+    private ExtentTest test;
+
+    @BeforeClass
+    public void setUp() {
+        // Set up WebDriver
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Sunil.Roul\\Downloads\\chromedriver_win32 (5)\\chromedriver.exe");
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+
+        // Extent Reports setup
+        ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter("extent-report.html");
+        extent = new ExtentReports();
+        extent.attachReporter(htmlReporter);
+    }
+
+    private void captureScreenshot(String testName) {
+        try {
+            // Convert WebDriver object to TakesScreenshot
+            TakesScreenshot screenshot = (TakesScreenshot) driver;
+            // Capture the screenshot and save it as a file
+            File sourceFile = screenshot.getScreenshotAs(OutputType.FILE);
+            // Specify the path where you want to save the screenshot
+            String screenshotPath = "test-output/screenshots/" + testName + "_" + System.currentTimeMillis() + ".png";
+            // Copy the screenshot to the desired location
+            Files.copy(sourceFile.toPath(), new File(screenshotPath).toPath(), StandardCopyOption.REPLACE_EXISTING);
+            // Attach the screenshot to the Extent Report
+            test.addScreenCaptureFromPath(screenshotPath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void executeTest() throws InterruptedException {
+        // Create a new test in Extent Reports
+        test = extent.createTest("executeTest", "Test Description");
+
+        // Navigate to the website
+        driver.get("https://www.orangehrm.com/");
+        
+        // Example: Your test steps...
+        // For instance, interact with elements on the page, perform actions, etc.
+        // You can add detailed comments for each step here.
+        
+        try {
+            // Your test steps...
+        } catch (Exception e) {
+            // Capture and attach screenshot on failure
+            captureScreenshot("executeTest");
+            // Log failure details in the report
+            test.log(Status.FAIL, "Test failed: " + e.getMessage());
+            // Rethrow the exception to mark the test as failed in TestNG
+            throw e;
+        }
+    }
+
+    @Test
+    public void clickonSpacificpage() throws InterruptedException {
+        test = extent.createTest("clickonSpacificpage", "Test Description");
+        try {
+            // Example: Click on a button to go to a specific page
+        	driver.findElement(By.xpath("//div[@class='d-flex web-menu-btn']//li[1]//a[1]")).click();
+            Thread.sleep(2000);
+        } catch (Exception e) {
+            captureScreenshot("clickonSpacificpage");
+            test.log(Status.FAIL, "Test failed: " + e.getMessage());
+            throw e;
+        }
+    }
+
+    @Test
+    public void FillForm() throws InterruptedException {
+        test = extent.createTest("FillForm", "Test Description");
+        try {
+            // Example: Fill out a form
+            driver.findElement(By.xpath("//input[@id='Form_getForm_FullName']")).sendKeys("Sunil");
+            driver.findElement(By.xpath("//input[@id='Form_getForm_Email']")).sendKeys("Sunil@gmail.com");
+            driver.findElement(By.xpath("//input[@id='Form_getForm_CompanyName']")).sendKeys("Cavsss");
+
+            // Log test steps to Extent Report
+            test.log(Status.INFO, "Filled out a form");
+
+            // Example: Select a value from a dropdown
+            Select dropdown = new Select(driver.findElement(By.xpath("//select[@id='Form_getForm_Country']")));
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0,250)", "");
+            Thread.sleep(2000);
+            dropdown.selectByValue("India");
+
+            // Log test steps to Extent Report
+            test.log(Status.INFO, "Selected a value from dropdown");
+
+            // Example: Submit the form
+            driver.findElement(By.xpath("//input[@id='Form_getForm_action_submitForm']")).click();
+
+            // Log test steps to Extent Report
+            test.log(Status.INFO, "Submitted the form");
+
+            // Mark the test as passed in the Extent Report
+            test.pass("Test passed");
+        } catch (Exception e) {
+            captureScreenshot("FillForm");
+            test.log(Status.FAIL, "Test failed: " + e.getMessage());
+            throw e;
+        }
+    }
+
+    @AfterClass
+    public void tearDown() {
+        // Quit the WebDriver
+        if (driver != null) {
+            driver.quit();
+        }
+
+        // Flush the Extent Reports
+        extent.flush();
+    }
+}

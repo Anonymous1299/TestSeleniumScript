@@ -1,0 +1,93 @@
+import java.time.Duration;
+import webdriver
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
+
+public class Flipkart_AddtoCart {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.Chrome.driver", "C:\\Users\\Sunil.Roul\\Downloads\\chromedriver-win32\\chromedriver-win32.exe");
+		WebDriver driver = new ChromeDriver(); 
+		driver.get("https://www.flipkart.com/");
+		driver.manage().window().maximize();
+		String currentHandle= driver.getWindowHandle();
+		//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		driver.findElement(By.xpath("//a[@class='_1_3w1N']"));
+		driver.findElement(By.cssSelector("input[class='_2IX_2- VJZDxU']")).sendKeys("9937806564");
+		driver.findElement(By.cssSelector("input[type='password']")).sendKeys("Sunil@123");
+		driver.findElement(By.xpath("//button[@type='submit']//span[contains(text(),'Login')] ")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.cssSelector("input[placeholder='Search for products, brands and more']")).sendKeys("oneplus 8");
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//button[@type='submit']")).click();
+		Thread.sleep(2000);
+		String urlToClick=driver.findElement(By.xpath("//body/div[@id='container']/div/div[@class='_36fx1h _6t1WkM _3HqJxg']/div[@class='_1YokD2 _2GoDe3']/div[@class='_1YokD2 _3Mn1Gg']/div[2]/div[1]/div[1]/div[1]/a[1]/div[2]/div[1]/div[1]")).getAttribute("/oneplus-nord-ce-2-lite-5g-black-dusk-128-gb/p/itm7acae55b999e6?pid=MOBGHH9FVUHCFHTY&lid=LSTMOBGHH9FVUHCFHTYTOIZQW&marketplace=FLIPKART&q=oneplus+8&store=tyy%2F4io&srno=s_1_7&otracker=search&otracker1=search&fm=Search&iid=c2e45762-d671-4b08-8265-7e670825c76b.MOBGHH9FVUHCFHTY.SEARCH&ppt=sp&ppn=sp&ssid=qezybectjk0000001663775385763&qH=904385dc6fdf3a66");
+		//switch to new tab
+		((JavascriptExecutor)driver).executeScript("window.open()");
+		//opening new url on new tab <for loop & if>
+		
+		Set<String> handles=driver.getWindowHandles();
+	        
+			for(String actual: handles)   
+			{      
+		     if(!actual.equalsIgnoreCase(currentHandle))    
+		    {
+		     //switching to the opened tab
+		     driver.switchTo().window(actual);
+	             
+	         //opening the URL saved.
+	         driver.get("https://www.flipkart.com/oneplus-nord-ce-2-lite-5g-black-dusk-128-gb/p/itm7acae55b999e6?pid=MOBGHH9FVUHCFHTY&lid=LSTMOBGHH9FVUHCFHTYTOIZQW&marketplace=FLIPKART&q=oneplus+8&store=tyy%2F4io&srno=s_1_7&otracker=search&otracker1=search&fm=Search&iid=c2e45762-d671-4b08-8265-7e670825c76b.MOBGHH9FVUHCFHTY.SEARCH&ppt=sp&ppn=sp&ssid=qezybectjk0000001663775385763&qH=904385dc6fdf3a66");
+	         Thread.sleep(2000);
+	         
+	         String str = "Coming Soon";
+	         //get page source
+	             
+	         if ( driver.getPageSource().contains("Coming Soon"))
+	         {
+	          System.out.println("Item isn't available");
+	         }
+	         else
+	         {
+	          System.out.println("continue Test");
+	         }
+	       driver.findElement(By.xpath("//button[normalize-space()='ADD TO CART']")).click();
+	       Thread.sleep(2000);
+	       driver.findElement(By.xpath("//div//div/button[.='Enter Delivery Pincode']")).click();
+		   Thread.sleep(2000);
+		   driver.findElement(By.cssSelector("input[placeholder='Enter pincode']")).sendKeys("754215");
+		   Thread.sleep(2000);
+		   driver.findElement(By.xpath("//div[@class='_3uzwpU']")).click();
+		   Thread.sleep(2000);
+		   driver.findElement(By.xpath("//span[normalize-space()='Place Order']")).click();
+		   Thread.sleep(2000);
+		  // driver.switchTo().alert().accept();
+		   Actions action = new Actions(driver);
+		   Thread.sleep(2000);
+		    action.clickAndHold(driver.findElement(By.xpath("/html/body/div/div/div[2]/div[2]/p"))).build().perform();
+		   Thread.sleep(2000);
+		   driver.findElement(By.xpath("//div[@class='_1P2-0f']")).click();
+		   Thread.sleep(2000);
+		   driver.findElement(By.cssSelector("input[name='name']")).sendKeys("Sunil Roul");  
+		   driver.findElement(By.cssSelector("input[name='phone']")).sendKeys("7978487756");  
+		   driver.findElement(By.cssSelector("input[name='pincode']")).sendKeys("754215");
+		   driver.findElement(By.xpath("//input[@name='addressLine2']")).sendKeys("Indian");
+		   driver.findElement(By.xpath("//textarea[@name='addressLine1']")).sendKeys("Sector 73, Hardik Tower");
+		   driver.findElement(By.cssSelector("input[name='city']")).sendKeys("Noida");
+		 //  Thread.sleep(2000);=
+		   Select drpdwnstate = new Select(driver.findElement(By.cssSelector("select[name='state']")));
+		   Thread.sleep(2000);
+		   drpdwnstate.selectByVisibleText("Uttar Pradesh");   
+	     }
+	    }
+	        
+		
+	}
+
+}
